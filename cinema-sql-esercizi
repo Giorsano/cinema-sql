@@ -1,0 +1,41 @@
+/* nome delle sale di Pisa */
+select sale.nome
+from sale 
+where sale.citta = 'Pisa' 
+
+
+/* titolo dei film di F.Fellini prodotti dopo il 1960 */
+select film.titolo
+from film join proiezioni on film.codfilm = proiezioni.codfilm
+where film.regista = 'F. Fellini' and film.annoproduzione > 1960
+
+
+/* titolo e durata dei film di fantascienza francesi o giapponesi prodotti dopo il 1990 */
+select film.titolo
+from film 
+where film.genere = 'fantascienza' and film.nazionalita = 'giapponese' or film.nazionalita = 'francese' and film.annoproduzione > 1990
+
+
+/* titolo film fantascienza giapponesi prodotti dopo il 1990 oppure i film francesi */
+select film.titolo
+from film
+where film.nazionalita = 'giapponese' and film.annoproduzione > 1990 or film.nazionalita = 'francese'
+
+
+/* i titolo dei film dello stesso regista di "Casablanca" */
+select film.titolo
+from film join proiezioni on film.codfilm = proiezioni.codfilm
+where film.regista = 'Michael Curtiz'
+
+
+/*titolo e genere dei film proiettati il giorno di natale 2004 */
+select film.titolo, film.genere
+from film join proiezioni on film.codfilm = proiezioni.codfilm
+where proiezioni.dataproiezione = '2004-12-25'
+
+
+/*titoli e genere dei film proiettati a napoli il giorno di natale 2004 */
+select film.titolo, film.genere
+from film join proiezioni on film.codfilm = proiezioni.codfilm
+        join sale on sale.codsala = proiezioni.codsala
+where sale.citta = 'Napoli' and proiezioni.dataproiezione = '2004-12-25'
